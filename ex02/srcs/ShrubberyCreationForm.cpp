@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:40:15 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/08 17:51:31 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/10 19:41:58 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,9 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 //getter & setter
 
 //other
-void ShrubberyCreationForm::execute(Bureaucrat & executor)
-{
-	try 
-	{
-		if (!Form::getIsSign())
-			throw Form::NotSignedException();
-		else if (executor.getGrade() >  Form::getExecGrade())
-			throw Form::GradeTooLowException();
-		else
-			ShrubberyCreationForm::printThree();
-	}
-	catch(std::exception & e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << "ca marche \n";
 
-}
 //bonus
-void    ShrubberyCreationForm::printThree(void)
+void    ShrubberyCreationForm::execution(void)
 {
 	std::ofstream	sfile(target + "_shrubbery", std::ios::trunc);
 	if (!sfile)

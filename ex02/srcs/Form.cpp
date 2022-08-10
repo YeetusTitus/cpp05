@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:19:01 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/08 15:57:48 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/10 20:09:47 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Form::Form(std::string t, const std::string n, int sg, int eg) : name(n), isSign
 	}
 	catch(std::exception & e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		std::cout << "Set the execGrade at 150" << std::endl;
 		execGrade = 150;
 	}
@@ -43,14 +43,13 @@ Form::Form(std::string t, const std::string n, int sg, int eg) : name(n), isSign
 	{
 		if (sg < 1)
 			throw Form::GradeTooHighException();
-		else if (sg > 150)
+		if (sg > 150)
 			throw Form::GradeTooLowException();
-		else
-			signGrade = sg;
+		signGrade = sg;
 	}
 	catch(std::exception & e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		std::cout << "Set the signGrade at 150" << std::endl;
 		signGrade = 150;
 	}
@@ -137,14 +136,30 @@ void	Form::beSigned(Bureaucrat & b)
 		else
 		{
 			isSign = true;
-			std::cout << b << " signed " << *this << std::endl;
+			std::cout << b.getName() << " bureaucrat signed " << this->getName() << " form" << std::endl;
 		}
     }
     catch(const std::exception& e)
     {
-		std::cout << b << " couldn't sign " << *this << " because " << e.what() << std::endl;
+		std::cerr << b.getName() << " bureaucrat couldn't sign " << this->getName() << " form because " << e.what() << std::endl;
     }
 
+}
+
+void Form::execute(Bureaucrat & executor)
+{
+	try 
+	{
+		if (!Form::getIsSign())
+			throw Form::NotSignedException();
+		if (executor.getGrade() >  Form::getExecGrade())
+			throw Form::GradeTooLowException();
+		execution();
+	}
+	catch(std::exception & e)
+	{
+		std::cerr << executor.getName() << " Bureaucrat didn't execute " << name << " form because " << e.what() << std::endl;
+	}
 }
 //bonus
 

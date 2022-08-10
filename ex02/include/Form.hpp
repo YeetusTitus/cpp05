@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:11:03 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/08 17:41:04 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/10 20:05:19 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class Bureaucrat;
 class Form {
 
 protected :
+
+
 const std::string	name;
 bool				isSign;
 int					signGrade;
@@ -46,7 +48,10 @@ public:
 	int			getExecGrade(void);
 	std::string	getTarget(void);
 
-    virtual void execute(Bureaucrat & executor) = 0;
+    void execute(Bureaucrat & executor);
+
+	virtual void execution() = 0;
+	
 	void	beSigned(Bureaucrat & b);
 
 	class GradeTooHighException : public std::exception

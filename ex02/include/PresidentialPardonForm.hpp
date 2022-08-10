@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 10:06:12 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/10 19:42:02 by jforner          ###   ########.fr       */
+/*   Created: 2022/08/10 17:03:07 by jforner           #+#    #+#             */
+/*   Updated: 2022/08/10 19:42:25 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHUREBBERYCREATIONFORM_H
-# define SHUREBBERYCREATIONFORM_H
+#ifndef PRESIDENTIALPARDONFORM_H
+# define PRESIDENTIALPARDONFORM_H
 # include <string>
 # include <iostream>
 # include <cstring>
 # include <fstream>
 # include "Form.hpp"
 
-class ShrubberyCreationForm : public Form {
+class PresidentialPardonForm : public Form {
 
+private :
+void	execution(void);
 
 public:
-    ShrubberyCreationForm(std::string t);
-    ~ShrubberyCreationForm(void);
-    
-    ShrubberyCreationForm(ShrubberyCreationForm &copy);
+    PresidentialPardonForm(std::string t);
+    ~PresidentialPardonForm(void);
+        
+    PresidentialPardonForm(PresidentialPardonForm &copy);
 
-    ShrubberyCreationForm& operator=(ShrubberyCreationForm &copy);
-    ShrubberyCreationForm& operator=(const ShrubberyCreationForm &copy);
-
-    void	execution(void);
+    PresidentialPardonForm& operator=(PresidentialPardonForm &copy);
+    PresidentialPardonForm& operator=(const PresidentialPardonForm &copy);
 };
 
 #endif

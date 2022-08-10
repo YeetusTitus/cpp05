@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:19:01 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/08 15:47:36 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/10 20:11:08 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Form::Form(const std::string n, int sg, int eg) : name(n), isSign(false)
 	}
 	catch(std::exception & e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		std::cout << "Set the execGrade at 150" << std::endl;
 		execGrade = 150;
 	}
@@ -50,7 +50,7 @@ Form::Form(const std::string n, int sg, int eg) : name(n), isSign(false)
 	}
 	catch(std::exception & e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		std::cout << "Set the signGrade at 150" << std::endl;
 		signGrade = 150;
 	}
@@ -129,12 +129,12 @@ void	Form::beSigned(Bureaucrat & b)
 		else
 		{
 			isSign = true;
-			std::cout << b << " signed " << *this << std::endl;
+			std::cout << b.getName() << " bureaucrat signed " << this->getName() << " form" << std::endl;
 		}
     }
     catch(const std::exception& e)
     {
-		std::cout << b << " couldn't sign " << *this << " because " << e.what() << std::endl;
+		std::cerr << b.getName() << " bureaucrat couldn't sign " << this->getName() << " form because " << e.what() << std::endl;
     }
 
 }
