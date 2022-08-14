@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 10:06:12 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/14 15:36:42 by jforner          ###   ########.fr       */
+/*   Created: 2022/08/14 15:53:50 by jforner           #+#    #+#             */
+/*   Updated: 2022/08/14 16:42:09 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHUREBBERYCREATIONFORM_H
-# define SHUREBBERYCREATIONFORM_H
+#ifndef INTERN_H
+# define INTERN_H
 # include <string>
 # include <iostream>
 # include <cstring>
 # include <fstream>
 # include "Form.hpp"
 
-class ShrubberyCreationForm : public Form {
+class Intern {
 
-private:
-    void	execution(void)const;
+private :
 
 public:
-    ShrubberyCreationForm(std::string t);
-    ~ShrubberyCreationForm(void);
-    
-    ShrubberyCreationForm(ShrubberyCreationForm &copy);
+	Intern(void);
+	~Intern(void);
 
-    ShrubberyCreationForm& operator=(ShrubberyCreationForm &copy);
-    ShrubberyCreationForm& operator=(const ShrubberyCreationForm &copy);
-
+	Form	*makeForm(std::string fname, std::string ftarget);
 };
 
+
+Form	*pardon(std::string ftarget);
+Form	*request(std::string ftarget);
+Form	*creation(std::string ftarget);
 #endif
