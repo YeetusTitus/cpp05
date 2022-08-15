@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 04:04:10 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/14 15:34:39 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/15 18:41:54 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,24 @@ void	Bureaucrat::gradeMinus(void)
 	}
 }
 
-void	Bureaucrat::executeForm( Form& form)
+void	Bureaucrat::signForm(Form & f)
+{
+    try
+    {
+		if (f.getIsSign())
+			throw Form::AlreadySignedException();
+		if (grade >  f.getSignGrade())
+			throw Form::GradeTooLowException();
+		f.beSigned(*this);
+		std::cout << name << " bureaucrat signed " << f.getName() << " form" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+		std::cerr << name << " bureaucrat couldn't sign " << f.getName() << " form because " << e.what() << std::endl;
+    }
+}
+
+void	Bureaucrat::executeForm(Form const & form)const
 {
 	try {
 		if (!form.getIsSign())

@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:19:01 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/10 20:11:08 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/15 18:09:53 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,10 @@ Form::Form(void) : name("default"), isSign(false),  signGrade(150), execGrade(15
   std::cout << "Form created !" << std::endl;
 }
 
-Form::Form(const std::string n, int sg, int eg) : name(n), isSign(false)
+Form::Form(const std::string n, int sg, int eg) : name(n), isSign(false),
+	signGrade(assigngrade(sg, "signGrade")), execGrade(assigngrade(eg, "execGrade"))
 {
-    try
-	{
-		if (eg < 1)
-			throw Form::GradeTooHighException();
-		else if (eg > 150)
-			throw Form::GradeTooLowException();
-		else
-			execGrade = eg;
-	}
-	catch(std::exception & e)
-	{
-		std::cerr << e.what() << std::endl;
-		std::cout << "Set the execGrade at 150" << std::endl;
-		execGrade = 150;
-	}
-    
-    try
-	{
-		if (sg < 1)
-			throw Form::GradeTooHighException();
-		else if (sg > 150)
-			throw Form::GradeTooLowException();
-		else
-			signGrade = sg;
-	}
-	catch(std::exception & e)
-	{
-		std::cerr << e.what() << std::endl;
-		std::cout << "Set the signGrade at 150" << std::endl;
-		signGrade = 150;
-	}
+
   std::cout << n << " Form created !" << std::endl;
 }
 
@@ -87,16 +58,12 @@ std::ostream&	operator<<(std::ostream& os, Form& f2)
 Form& Form::operator=(Form &copy)
 {
 	isSign = copy.isSign;
-	signGrade = copy.signGrade;
-	execGrade = copy.execGrade;
 	return *this;
 }
 
 Form& Form::operator=(const Form &copy)
 {
 	isSign = copy.isSign;
-	signGrade = copy.signGrade;
-	execGrade = copy.execGrade;
 	return *this;
 }
 
@@ -124,13 +91,9 @@ void	Form::beSigned(Bureaucrat & b)
     {
 		if(isSign)
 			throw AlreadySignedException();
-        else if (b.getGrade() > signGrade)
+        if (b.getGrade() > signGrade)
             throw GradeTooLowException();
-		else
-		{
-			isSign = true;
-			std::cout << b.getName() << " bureaucrat signed " << this->getName() << " form" << std::endl;
-		}
+		isSign = true;
     }
     catch(const std::exception& e)
     {
@@ -139,7 +102,23 @@ void	Form::beSigned(Bureaucrat & b)
 
 }
 //bonus
-
+int Form::assigngrade(int g, std::string message)
+{
+ try
+	{
+		if (g < 1)
+			throw Form::GradeTooHighException();
+		if (g > 150)
+			throw Form::GradeTooLowException();
+		return (g);
+	}
+	catch(std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+		std::cout << "Set the " << message << " at 150" << std::endl;
+		return(150);
+	}
+}
 //exception
 const char *	Form::GradeTooHighException::what(void) const throw()
 {

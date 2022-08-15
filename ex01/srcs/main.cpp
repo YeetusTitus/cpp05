@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 05:38:40 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/08 15:44:29 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/15 18:25:45 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ int main(void)
         Form        c("ation", 1, 1);
 
         std::cout <<  "\033[0;34m";
-        b.beSigned(k);
+        
+        k.signForm(b);
         std::cout <<  "\033[0;31m";
         Form        d(b);
         
         std::cout <<  "\033[0;34m";
 
         c.beSigned(j);
-        d.beSigned(j);
+        j.signForm(d);
+
         std::cout << j << std::endl;
         std::cout << k << std::endl;
         std::cout << a << std::endl;

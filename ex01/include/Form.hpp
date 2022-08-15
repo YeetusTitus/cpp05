@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 17:11:03 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/08 14:59:39 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/15 18:20:33 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@
 # include <fstream>
 # include "Bureaucrat.hpp"
 
+
+class Bureaucrat;
+
 class Form {
 
 private :
 const std::string	name;
 bool				isSign;
-int					signGrade;
-int					execGrade;
+const int			signGrade;
+const int			execGrade;
 
 public:
     Form(void);
@@ -40,6 +43,10 @@ public:
 
     Form& operator=(Form &copy);
     Form& operator=(const Form &copy);
+	
+	void	beSigned(Bureaucrat & b);
+
+	int assigngrade(int g, std::string message);
 
 	class GradeTooHighException : public std::exception
 	{
@@ -59,7 +66,6 @@ public:
 		const char *	what(void) const throw();
 	};
 
-	void	beSigned(Bureaucrat & b);
 };
 std::ostream&	operator<<(std::ostream& os, Form& f2);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 03:40:09 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/08 14:59:10 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/15 18:06:20 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <cstring>
 # include <fstream>
 # include <exception>
+# include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
 
@@ -40,6 +43,8 @@ public:
 
 	void	gradePlus(void);
 	void	gradeMinus(void);
+
+	void	signForm(Form & f);
 
 	class GradeTooHighException : public std::exception
 	{

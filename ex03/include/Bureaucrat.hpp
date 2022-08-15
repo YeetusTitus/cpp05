@@ -6,7 +6,7 @@
 /*   By: jforner <jforner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 03:40:09 by jforner           #+#    #+#             */
-/*   Updated: 2022/08/14 15:34:44 by jforner          ###   ########.fr       */
+/*   Updated: 2022/08/15 18:42:09 by jforner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ public:
 
 	void	gradePlus(void);
 	void	gradeMinus(void);
-	void	executeForm(Form & form);
+
+
+	void	signForm(Form & f);
+	void	executeForm(Form const & form)const;
 
 
 	class GradeTooHighException : public std::exception
